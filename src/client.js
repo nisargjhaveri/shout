@@ -34,6 +34,8 @@ var events = [
 ];
 var inputs = [
 	"action",
+	"away",
+	"back",
 	"connect",
 	"invite",
 	"join",
