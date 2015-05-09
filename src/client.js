@@ -60,7 +60,8 @@ function Client(sockets, name, config) {
 		id: id++,
 		name: name,
 		networks: [],
-		sockets: sockets
+		sockets: sockets,
+		activeClients: 0
 	});
 	var client = this;
 	crypto.randomBytes(48, function(err, buf) {
@@ -380,3 +381,13 @@ Client.prototype.save = function(force) {
 		);
 	});
 };
+
+Client.prototype.setActive = function(active) {
+	var client = this;
+	if (active) {
+		client.networks[0].irc.back();
+	}
+	else {
+		client.networks[0].irc.away();
+	}
+}

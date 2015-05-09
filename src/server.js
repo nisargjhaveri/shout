@@ -157,6 +157,16 @@ function auth(data) {
 				if (data.remember || data.token) {
 					token = client.token;
 				}
+				if (!client.activeClients) {
+					client.setActive(true);
+				}
+				client.activeClients++;
+				socket.on("disconnect", function() {
+					client.activeClients--;
+					if (!client.activeClients) {
+						client.setActive(false);
+					}
+				});
 				init(socket, client, token);
 				return false;
 			}
