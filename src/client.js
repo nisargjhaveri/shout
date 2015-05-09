@@ -157,6 +157,7 @@ Client.prototype.connect = function(args) {
 
 	var nick = args.nick || "shout-user";
 	var username = args.username || nick.replace(/[^a-zA-Z0-9]/g, '');
+	var awaynick = args.awaynick || nick;
 	var realname = args.realname || "Shout User";
 
 	var irc = slate(stream);
@@ -178,6 +179,7 @@ Client.prototype.connect = function(args) {
 		password: args.password,
 		username: username,
 		realname: realname,
+		awaynick: awaynick,
 		commands: args.commands
 	});
 
@@ -384,10 +386,19 @@ Client.prototype.save = function(force) {
 
 Client.prototype.setActive = function(active) {
 	var client = this;
-	if (active) {
-		client.networks[0].irc.back();
-	}
-	else {
-		client.networks[0].irc.away();
-	}
+	this.networks.forEach(function(network) {
+		var irc = network.irc;
+		if (active) {
+			irc.back();
+			if (irc.me != network.nick) {
+				irc.nick(network.nick);
+			}
+		}
+		else {
+			irc.away();
+			if (irc.me != network.awaynick) {
+				irc.nick(network.awaynick);
+			}
+		}
+	});
 }

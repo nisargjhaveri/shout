@@ -142,6 +142,15 @@
 								<input class="input username" name="username" value="<%= defaults.username %>">
 							</div>
 							<div class="clearfix"></div>
+							<% if (!public) { %>
+								<div class="col-sm-3">
+									<label>Nick when away</label>
+								</div>
+								<div class="col-sm-5">
+									<input class="input awaynick" name="awaynick" value="<%= defaults.nick %>">
+								</div>
+								<div class="clearfix"></div>
+							<% } %>
 							<div class="col-sm-3">
 								<label>Real name</label>
 							</div>

@@ -695,6 +695,7 @@ $(function() {
 	forms.on("input", ".nick", function() {
 		var nick = $(this).val();
 		forms.find(".username").val(nick);
+		forms.find(".awaynick").val(nick);
 	});
 
 	Mousetrap.bind([
