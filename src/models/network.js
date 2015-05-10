@@ -16,6 +16,7 @@ function Network(attr) {
 		username: "",
 		realname: "",
 		awaynick: "",
+		livenick: "",
 		channels: [],
 		connected: false,
 		id: id++,
@@ -45,6 +46,7 @@ Network.prototype.export = function() {
 		"username",
 		"realname",
 		"awaynick",
+		"livenick",
 		"commands"
 	]);
 	network.nick = (this.irc || {}).me;

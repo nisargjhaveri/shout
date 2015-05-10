@@ -180,6 +180,7 @@ Client.prototype.connect = function(args) {
 		username: username,
 		realname: realname,
 		awaynick: awaynick,
+		livenick: nick,
 		commands: args.commands
 	});
 
@@ -390,8 +391,8 @@ Client.prototype.setActive = function(active) {
 		var irc = network.irc;
 		if (active) {
 			irc.back();
-			if (irc.me != network.nick) {
-				irc.nick(network.nick);
+			if (irc.me != network.livenick) {
+				irc.nick(network.livenick);
 			}
 		}
 		else {

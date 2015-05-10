@@ -788,6 +788,11 @@ $(function() {
 				return "Are you sure you want to navigate away from this page?";
 			};
 		}
+		else {
+			window.onbeforeunload = function() {
+				socket.disconnect();
+			};
+		}
 	}
 
 	function refresh() {
