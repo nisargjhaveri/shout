@@ -1,5 +1,7 @@
 $(function() {
-	var socket = io();
+	var socket = io({
+		"sync disconnect on unload": $("body").hasClass("public") ? false : true
+	});
 	var commands = [
 		"/away",
 		"/back",
@@ -786,11 +788,6 @@ $(function() {
 		if ($("body").hasClass("public")) {
 			window.onbeforeunload = function() {
 				return "Are you sure you want to navigate away from this page?";
-			};
-		}
-		else {
-			window.onbeforeunload = function() {
-				socket.disconnect();
 			};
 		}
 	}
