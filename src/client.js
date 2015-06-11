@@ -158,6 +158,7 @@ Client.prototype.connect = function(args) {
 	var nick = args.nick || "shout-user";
 	var username = args.username || nick.replace(/[^a-zA-Z0-9]/g, '');
 	var awaynick = args.awaynick || nick;
+	var livenick = args.livenick || nick;
 	var realname = args.realname || "Shout User";
 
 	var irc = slate(stream);
@@ -180,7 +181,7 @@ Client.prototype.connect = function(args) {
 		username: username,
 		realname: realname,
 		awaynick: awaynick,
-		livenick: nick,
+		livenick: livenick,
 		commands: args.commands
 	});
 
